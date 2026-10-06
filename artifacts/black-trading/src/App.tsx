@@ -83,8 +83,8 @@ const clerkAppearance = {
 };
 
 function Logo({ small = false }: { small?: boolean }) {
-  return <span className={`brand-mark ${small ? "brand-small" : ""}`} aria-label="BLACK Trading">
-    <span className="brand-symbol">B</span><span className="brand-name">BLACK<span>TRADING</span></span>
+  return <span className={`brand-mark ${small ? "brand-small" : ""}`} aria-label="Nova Trading">
+    <span className="brand-symbol">N</span><span className="brand-name">NOVA<span>TRADING</span></span>
   </span>;
 }
 
@@ -114,7 +114,7 @@ function TopNav() {
   </header>;
 }
 
-function Footer({ company = "BLACK Trading", supportEmail }: { company?: string; supportEmail?: string }) {
+function Footer({ company = "Nova Trading", supportEmail }: { company?: string; supportEmail?: string }) {
   return <footer className="site-footer">
     <div className="bt-wrap">
       <div className="footer-main">
@@ -180,7 +180,7 @@ function HomePage() {
         <div className="hero-bottom bt-wrap"><span>Built for deliberate traders</span><span className="hero-bottom-line" /><span>RULES BEFORE RESULTS</span></div>
       </section>
 
-      <section className="intro-band"><div className="bt-wrap intro-layout"><p className="bt-kicker">The BLACK standard</p><div><h2>Capital follows<br /><em>consistency.</em></h2><p>BLACK Trading provides simulated evaluation accounts. You work within defined parameters, submit your performance for review, and learn where your process holds up under pressure.</p></div><div className="intro-mark">BT<span>®</span></div></div></section>
+      <section className="intro-band"><div className="bt-wrap intro-layout"><p className="bt-kicker">The Nova standard</p><div><h2>Capital follows<br /><em>consistency.</em></h2><p>Nova Trading provides simulated evaluation accounts. You work within defined parameters, submit your performance for review, and learn where your process holds up under pressure.</p></div><div className="intro-mark">N<span>®</span></div></div></section>
 
       <section className="section-padding" id="evaluations">
         <div className="bt-wrap">
@@ -230,8 +230,8 @@ function TermsPage() {
   const content = privacy ? site?.privacyContent : site?.termsContent;
   return <SiteFrame company={site?.companyName} supportEmail={site?.supportEmail}><main className="legal-page bt-wrap">
     <p className="bt-kicker">Information / {privacy ? "Privacy" : "Terms of service"}</p><h1>{privacy ? "Privacy notice" : "Terms of service"}</h1>
-    <div className="legal-review"><FileText size={18} /><div><b>Draft placeholder — qualified lawyer review required</b><p>This content is not legal advice and must be reviewed, completed, and approved by a qualified lawyer in each relevant jurisdiction before publication or use.</p></div></div>
-    <div className="legal-copy">{content ? content.split("\n").map((line,i)=>line.trim() ? <p key={i}>{line}</p> : <br key={i} />) : <><h2>{privacy ? "Privacy and information use" : "Evaluation terms"}</h2><p>This page is a legal placeholder. The final terms should accurately describe the operator, the simulated evaluation service, customer eligibility, order and payment review process, applicable fees and refunds, intellectual property, data use, dispute process, governing law, and contact information.</p><p>BLACK Trading evaluations are simulated. Any account size is a notional simulated value and is not customer cash, a brokerage account, a deposit, or a promise of funding, profit, or employment. Simulated results do not represent actual trading results.</p><p>Before accepting payment or publishing this site, have a qualified lawyer review all terms, privacy disclosures, consumer protection requirements, payment processor requirements, and restrictions in every market where the service is offered.</p></>}</div>
+    <div className="legal-review"><FileText size={18} /><div><b>Legal copy pending review</b><p>This content is not legal advice and must be reviewed, completed, and approved by a qualified lawyer in each relevant jurisdiction before publication or use.</p></div></div>
+    <div className="legal-copy">{content ? content.split("\n").map((line,i)=>line.trim() ? <p key={i}>{line}</p> : <br key={i} />) : <><h2>{privacy ? "Privacy and information use" : "Evaluation terms"}</h2><p>This page is a legal placeholder. The final terms should accurately describe the operator, the simulated evaluation service, customer eligibility, order and payment review process, applicable fees and refunds, intellectual property, data use, dispute process, governing law, and contact information.</p><p>Nova Trading evaluations are simulated. Any account size is a notional simulated value and is not customer cash, a brokerage account, a deposit, or a promise of funding, profit, or employment. Simulated results do not represent actual trading results.</p><p>Before accepting payment or publishing this site, have a qualified lawyer review all terms, privacy disclosures, consumer protection requirements, payment processor requirements, and restrictions in every market where the service is offered.</p></>}</div>
     <Link className="bt-button secondary" href="/">Return to home <ArrowRight size={14} /></Link>
   </main></SiteFrame>;
 }
@@ -325,7 +325,7 @@ function PaymentPage() {
           {notice && <p className={notice.startsWith("Transaction submitted")?"form-success":"form-error"} role="status">{notice}</p>}
           <button className="bt-button" type="submit" disabled={!quote||!address||!currency||!network||submit.isPending||!["PENDING","REJECTED"].includes(payment.paymentStatus)} data-testid="button-submit-payment">{submit.isPending?"Submitting…":"Submit for review"}<ArrowRight size={15}/></button>
         </form>
-      </section><aside className="payment-aside"><span className="bt-kicker">Before you send</span><div className="checklist"><p><CheckCircle2 size={16}/> Match the network exactly</p><p><CheckCircle2 size={16}/> Verify the full wallet address</p><p><CheckCircle2 size={16}/> Send only the displayed amount</p><p><CheckCircle2 size={16}/> Save the transaction hash</p></div><div className="payment-disclaimer"><ShieldCheck size={17}/><p>BLACK Trading does not ask for seed phrases or private keys. All evaluation trading is simulated. Never send funds until you have verified the wallet details on this page.</p></div></aside></div>}
+      </section><aside className="payment-aside"><span className="bt-kicker">Before you send</span><div className="checklist"><p><CheckCircle2 size={16}/> Match the network exactly</p><p><CheckCircle2 size={16}/> Verify the full wallet address</p><p><CheckCircle2 size={16}/> Send only the displayed amount</p><p><CheckCircle2 size={16}/> Save the transaction hash</p></div><div className="payment-disclaimer"><ShieldCheck size={17}/><p>Nova Trading does not ask for seed phrases or private keys. All evaluation trading is simulated. Never send funds until you have verified the wallet details on this page.</p></div></aside></div>}
   </main></SiteFrame>;
 }
 
@@ -342,17 +342,17 @@ function AdminAccessGate() {
   const {data,isLoading,isError,refetch}=useGetAdminDashboard({query:{queryKey:getGetAdminDashboardQueryKey(),retry:false}});
   const {signOut}=useClerk();
   if(isLoading)return <div className="admin-access-loading bt-wrap"><Skeleton rows={5}/></div>;
-  if(isError||!data)return <main className="admin-auth"><div className="admin-auth-card"><Logo/><span className="bt-kicker">ACCESS RESTRICTED</span><h1>Admin access<br/><em>required.</em></h1><p>This signed-in account is not on the BLACK Trading administrator allowlist. No admin controls are available.</p><button className="bt-button secondary" type="button" onClick={()=>void refetch()}>Check access again <RefreshCw size={14}/></button><button className="admin-home-link" type="button" onClick={()=>void signOut({redirectUrl:basePath||"/"})}>Sign out</button><Link className="admin-home-link" href="/">Return to public site</Link></div><div className="admin-auth-visual"><div className="admin-seal"><span>BT</span><small>PRIVATE<br/>OPERATIONS</small></div><p>Administrative routes are protected by server-side authorization.</p></div></main>;
+  if(isError||!data)return <main className="admin-auth"><div className="admin-auth-card"><Logo/><span className="bt-kicker">ACCESS RESTRICTED</span><h1>Admin access<br/><em>required.</em></h1><p>This signed-in account is not on the Nova Trading administrator allowlist. No admin controls are available.</p><button className="bt-button secondary" type="button" onClick={()=>void refetch()}>Check access again <RefreshCw size={14}/></button><button className="admin-home-link" type="button" onClick={()=>void signOut({redirectUrl:basePath||"/"})}>Sign out</button><Link className="admin-home-link" href="/">Return to public site</Link></div><div className="admin-auth-visual"><div className="admin-seal"><span>N</span><small>PRIVATE<br/>OPERATIONS</small></div><p>Administrative routes are protected by server-side authorization.</p></div></main>;
   return <AdminDashboardPage/>;
 }
 function AdminSignInEntry() {
-  return <main className="admin-auth"><div className="admin-auth-card"><Logo/><span className="bt-kicker">Administrative access</span><h1>Operations,<br/><em>with clarity.</em></h1><p>Sign in with your authorized Clerk account to manage BLACK Trading orders and published content.</p><Link href="/sign-in" className="bt-button">Continue to sign in <ArrowRight size={15}/></Link><Link className="admin-home-link" href="/">Return to public site</Link></div><div className="admin-auth-visual"><div className="admin-seal"><span>BT</span><small>PRIVATE<br/>OPERATIONS</small></div><p>Access is restricted to authorized operators. API permissions remain in force after sign-in.</p></div></main>;
+  return <main className="admin-auth"><div className="admin-auth-card"><Logo/><span className="bt-kicker">Administrative access</span><h1>Operations,<br/><em>with clarity.</em></h1><p>Sign in with your authorized Clerk account to manage Nova Trading orders and published content.</p><Link href="/sign-in" className="bt-button">Continue to sign in <ArrowRight size={15}/></Link><Link className="admin-home-link" href="/">Return to public site</Link></div><div className="admin-auth-visual"><div className="admin-seal"><span>N</span><small>PRIVATE<br/>OPERATIONS</small></div><p>Access is restricted to authorized operators. API permissions remain in force after sign-in.</p></div></main>;
 }
 
 function AdminDashboardPage() {
   const [tab,setTab]=useState<AdminTab>("overview"); const {signOut}=useClerk(); const {user}=useUser();
   const menu = <aside className="admin-sidebar"><Link href="/" className="admin-logo"><Logo small/><span className="admin-tag">ADMIN</span></Link><div className="admin-side-label">WORKSPACE</div><nav>{adminTabs.map(([id,label],i)=><button type="button" key={id} className={tab===id?"active":""} onClick={()=>setTab(id)}><span className="side-index">0{i+1}</span>{label}{tab===id&&<ChevronRight size={14}/>}</button>)}</nav><div className="admin-side-bottom"><div className="admin-user"><span>{user?.firstName?.[0] ?? "A"}</span><div><b>{user?.fullName || "Administrator"}</b><small>{user?.primaryEmailAddress?.emailAddress || "Authorized account"}</small></div></div><button className="signout-button" type="button" onClick={()=>signOut({redirectUrl:basePath||"/"})}><LogOut size={15}/> Sign out</button><Link href="/" className="view-site"><ExternalLink size={14}/> View public site</Link></div></aside>;
-  return <div className="admin-shell">{menu}<main className="admin-content"><div className="admin-mobile-head"><Link href="/"><Logo small/></Link><button type="button" onClick={()=>void signOut({redirectUrl:basePath||"/"})}><LogOut size={15}/> Sign out</button></div><header className="admin-page-head"><div><p className="bt-kicker">BLACK Trading / Operations</p><h1>{adminTabs.find(t=>t[0]===tab)?.[1]}</h1></div><div className="admin-live"><span/>PRIVATE WORKSPACE</div></header>
+  return <div className="admin-shell">{menu}<main className="admin-content"><div className="admin-mobile-head"><Link href="/"><Logo small/></Link><button type="button" onClick={()=>void signOut({redirectUrl:basePath||"/"})}><LogOut size={15}/> Sign out</button></div><header className="admin-page-head"><div><p className="bt-kicker">Nova Trading / Operations</p><h1>{adminTabs.find(t=>t[0]===tab)?.[1]}</h1></div><div className="admin-live"><span/>PRIVATE WORKSPACE</div></header>
     {tab==="overview"&&<AdminOverview/>}
     {tab==="orders"&&<AdminOrders/>}
     {tab!=="overview"&&tab!=="orders"&&<AdminResource tab={tab}/>}
@@ -427,7 +427,7 @@ function AdminResource({tab}:{tab:Exclude<AdminTab,"overview"|"orders">}) {
       testimonials:{customerName:"",quote:"",verified:false,published:false,demo:true},
       media:{title:"",kind:"announcement",caption:"",assetUrl:null,published:false,demo:true,sortOrder:0},
       statistics:{label:"",value:"",verified:false,visible:false,sortOrder:0},
-      settings:{companyName:"BLACK Trading",logoText:"BLACK",supportEmail:"",socialLinks:[],termsContent:"",privacyContent:""},
+      settings:{companyName:"Nova Trading",logoText:"NOVA",supportEmail:"",socialLinks:[],termsContent:"",privacyContent:""},
     };
     if(resource==="statistics") { setEditing({__bulk:true}); setJson(JSON.stringify((stats.data??[]).map(({id,...rest}:SiteStatistic)=>rest),null,2)); }
     else edit(defaults[resource]);
@@ -473,8 +473,8 @@ function ResourceEntry({item,resource,onEdit,onDelete,showDelete=true}:{item:any
   return <article className="resource-entry"><div className="resource-entry-main"><div className="resource-entry-top"><h3>{title||"Untitled"}</h3><span className={`status-pill ${published?"paid":"pending"}`}>{published?"ACTIVE":"HIDDEN"}</span></div><p>{summary||"No additional details."}</p><div className="resource-tags">{resource==="challenges"&&item.launchOffer&&<span>LAUNCH OFFER</span>}{resource==="statistics"&&<span>{item.verified?"VERIFIED":"UNVERIFIED"}</span>}{resource==="testimonials"&&<><span>{item.verified?"VERIFIED":"UNVERIFIED"}</span>{item.demo&&<span>DEMO EXAMPLE</span>}</>}{resource==="media"&&<><span>{String(item.kind).toUpperCase()}</span>{item.demo&&<span>DEMO</span>}</>}</div></div><div className="resource-actions"><button type="button" onClick={onEdit} aria-label={`Edit ${title}`}>Edit</button>{showDelete&&<button type="button" className="delete-action" onClick={onDelete} aria-label={`Delete ${title}`}>Delete</button>}</div></article>;
 }
 
-function SignInPage(){return <div className="auth-page"><div className="auth-brand"><Link href="/"><Logo/></Link><div><span className="bt-kicker">BLACK TRADING / SECURE ACCESS</span><p>Return to your workspace with a clear view of what comes next.</p></div><Link href="/" className="auth-back"><ArrowRight size={14}/> Back to public site</Link></div><div className="auth-form"><SignIn routing="path" path={`${basePath}/sign-in`} signUpUrl={`${basePath}/sign-up`}/></div></div>;}
-function SignUpPage(){return <div className="auth-page"><div className="auth-brand"><Link href="/"><Logo/></Link><div><span className="bt-kicker">BLACK TRADING / GET STARTED</span><p>Create an account to continue with an evaluation.</p></div><Link href="/" className="auth-back"><ArrowRight size={14}/> Back to public site</Link></div><div className="auth-form"><SignUp routing="path" path={`${basePath}/sign-up`} signInUrl={`${basePath}/sign-in`}/></div></div>;}
+function SignInPage(){return <div className="auth-page"><div className="auth-brand"><Link href="/"><Logo/></Link><div><span className="bt-kicker">NOVA TRADING / SECURE ACCESS</span><p>Return to your workspace with a clear view of what comes next.</p></div><Link href="/" className="auth-back"><ArrowRight size={14}/> Back to public site</Link></div><div className="auth-form"><SignIn routing="path" path={`${basePath}/sign-in`} signUpUrl={`${basePath}/sign-up`}/></div></div>;}
+function SignUpPage(){return <div className="auth-page"><div className="auth-brand"><Link href="/"><Logo/></Link><div><span className="bt-kicker">NOVA TRADING / GET STARTED</span><p>Create an account to continue with an evaluation.</p></div><Link href="/" className="auth-back"><ArrowRight size={14}/> Back to public site</Link></div><div className="auth-form"><SignUp routing="path" path={`${basePath}/sign-up`} signInUrl={`${basePath}/sign-in`}/></div></div>;}
 
 function HomeRedirect(){
   const {isLoaded,isSignedIn}=useUser();
@@ -487,7 +487,7 @@ function ClerkCacheInvalidator(){const {addListener}=useClerk();const qc=useQuer
 function AppRoutes(){
   const [,setLocation]=useLocation();
   return <ClerkProvider publishableKey={clerkPubKey} proxyUrl={clerkProxyUrl} appearance={clerkAppearance} signInUrl={`${basePath}/sign-in`} signUpUrl={`${basePath}/sign-up`}
-    localization={{signIn:{start:{title:"Welcome back",subtitle:"Sign in to continue with BLACK Trading"}},signUp:{start:{title:"Create your account",subtitle:"A clearer process starts here"}}}}
+    localization={{signIn:{start:{title:"Welcome back",subtitle:"Sign in to continue with Nova Trading"}},signUp:{start:{title:"Create your account",subtitle:"A clearer process starts here"}}}}
     routerPush={to=>setLocation(stripBase(to))} routerReplace={to=>setLocation(stripBase(to),{replace:true})}>
     <QueryClientProvider client={queryClient}><ClerkCacheInvalidator/><Switch>
       <Route path="/" component={HomeRedirect}/><Route path="/checkout" component={CheckoutPage}/><Route path="/payment" component={PaymentPage}/>

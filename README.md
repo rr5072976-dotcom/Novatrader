@@ -1,18 +1,18 @@
-# BLACK Trading
+# Nova Trading
 
-Phase 1 of BLACK Trading is a responsive website and API for publishing simulated evaluation offers, collecting customer orders, accepting cryptocurrency transaction hashes for manual review, and managing orders and website content.
+Phase 1 of Nova Trading is a responsive website and API for publishing simulated evaluation offers, collecting customer orders, accepting cryptocurrency transaction hashes for manual review, and managing orders and website content.
 
 This is not a live trading terminal. Buying an evaluation does not provide customer cash, a live brokerage account, guaranteed funding, profits, or payouts. The displayed account sizes are simulated notional amounts.
 
 ## Phase 1 features
 
-- Public landing page with evaluation offers, FAQs, legal-information links, and clearly labelled example media or testimonials.
+- Public landing page with evaluation offers, FAQs, and clearly labelled example media or testimonials.
+- Terms of Service at `/terms` and the Privacy notice at `/terms?section=privacy`. Both currently contain placeholder copy and display a “Legal copy pending review” notice.
 - Checkout that takes its price and offer details from PostgreSQL on the server.
 - Payment page with server-generated cryptocurrency quotes, configurable receiving addresses, QR codes, and transaction-hash submission.
 - Manual order review. Submitting a transaction hash records `PAYMENT_SUBMITTED`; it never marks an order `PAID`.
 - Clerk sign-in and an administrator-only console for orders, challenges, payment methods, FAQs, testimonials, media, statistics, and site settings.
 - Server-side audit records for administrator changes.
-- Lawyer-review placeholders for Terms of Service and the privacy notice.
 
 The trading terminal, automated blockchain verification, payment settlement, and customer cash or payout handling are outside this phase.
 
@@ -28,7 +28,7 @@ The trading terminal, automated blockchain verification, payment settlement, and
 
 | Path | Purpose |
 | --- | --- |
-| `artifacts/black-trading/` | BLACK Trading React/Vite application |
+| `artifacts/black-trading/` | Nova Trading React/Vite application |
 | `artifacts/api-server/` | Express API, Clerk middleware, public and admin routes |
 | `lib/api-spec/openapi.yaml` | Source of truth for API request and response contracts |
 | `lib/api-client-react/` | Generated React Query client; do not edit generated files directly |
@@ -61,7 +61,7 @@ pnpm --filter @workspace/db run generate
 pnpm --filter @workspace/db run push
 pnpm --filter @workspace/db run seed
 
-# Run the managed workspace services
+# Start each service in a separate terminal (Replit users can use the managed workflows above)
 pnpm --filter @workspace/api-server run dev
 pnpm --filter @workspace/black-trading run dev
 
@@ -101,7 +101,7 @@ The Prisma schema includes:
 
 The seed script inserts challenges priced at $36, $56, $74, and $108, plus the $100K / $25 Limited Launch Evaluation Offer. That offer is the fee for a simulated evaluation; it is not $100,000 in cash.
 
-Seeded testimonials, media, and statistics are marked as examples or unverified. Unverified statistics are not returned by the public API. Example testimonials and demo media are visibly labelled. The seed does not configure receiving wallet addresses; an administrator must add and verify real addresses before enabling a payment method.
+Seeded testimonials, media, and statistics are marked as examples or unverified. Unverified statistics are not returned by the public API. Example testimonials and demo media are visibly labelled. The seed configures no payment methods or receiving wallet addresses, so customers cannot pay until an administrator adds and verifies the real address and network before enabling a method.
 
 ## Orders and cryptocurrency payments
 
@@ -140,7 +140,7 @@ Edit `lib/api-spec/openapi.yaml`, then run the code-generation command above bef
 - Configure the real company support address and social links.
 - Add and independently verify every receiving wallet address and its exact network.
 - Confirm live evaluation rules, eligibility restrictions, payment handling, and all commercial claims.
-- Replace the legal placeholders only after review by a qualified lawyer in relevant jurisdictions. The current Terms and privacy content is a draft, not legal advice or launch-ready legal text.
+- Replace the Terms and Privacy placeholders with copy reviewed by a qualified lawyer in relevant jurisdictions. Remove the “Legal copy pending review” notice only after the final copy is approved; the current content is not legal advice or launch-ready legal text.
 - Replace or remove every demo testimonial, media item, and unverified statistic. Do not publish unsupported customer counts, trading results, payout claims, cash claims, or regulatory claims.
 - Test order creation, payment submission, manual status review, and admin authorization in the intended environment before accepting customer payments.
 

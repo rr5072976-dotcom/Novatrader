@@ -152,8 +152,8 @@ model SiteStatistic {
 
 model SiteSetting {
   id             String   @id @default("global")
-  companyName    String   @default("BLACK Trading") @map("company_name")
-  logoText       String   @default("BLACK Trading") @map("logo_text")
+  companyName    String   @default("Nova Trading") @map("company_name")
+  logoText       String   @default("NOVA") @map("logo_text")
   supportEmail   String   @default("") @map("support_email")
   socialLinks    Json     @default("[]") @map("social_links")
   termsContent   String   @default("") @map("terms_content") @db.Text

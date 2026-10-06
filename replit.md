@@ -1,4 +1,4 @@
-# BLACK Trading
+# Nova Trading
 
 Phase 1 is a responsive simulated-evaluation storefront with an API and administrator console. See `README.md` for setup, commands, API overview, and launch checks.
 
